@@ -1,0 +1,143 @@
+extends layout
+block css
+block headjs
+block content
+     button(class="btn tooltip",title="Upload",data-selector="#tip",data-trigger="hover",data-container="body",data-toggle="tooltip",title="Upload")                    
+     div(class="navbar") 
+        div(class="navbar-inner") 
+            ul(class="nav")
+                li
+                  div(class="btn-group")
+                    button(class="btn") 
+                        i(class="icon-file") 
+                        span(class="hidden-phone") New Connection
+                    button(class="btn dropdown-toggle",data-toggle="dropdown")
+                        span(class="caret")
+                    ul(class="dropdown-menu")
+                          li
+                            a(href="#") FTP - example.com
+                          li
+                            a(href="#") Dropbox
+                li
+                  button(class="btn",title="Upload")                    
+                    i(class="icon-upload")  
+                    span(class="hidden-phone") Upload                  
+                li             
+                    button(class="btn",title="Download") 
+                        i(class="icon-download") 
+                        span(class="hidden-phone") Download
+                li
+                    button(class="btn",title="Sync Browsing",disabled="disabled") 
+                        i(class="icon-resize-horizontal") 
+                        span(class="hidden-phone") Sync Browsing
+                li
+                    button(class="btn",title="Save") 
+                        i(class="icon-hdd") 
+                        span(class="hidden-phone") Save
+                    
+
+     div(id="tip",style="display:none")  
+     div(class="row-fluid show-grid")         
+        div(class="span6")
+            select(id="ddlleftconnection",name="ddlleftconnection",class="span12")
+                option(value="1") FTP - example.com
+                option(value="2") Dropbox
+            ul(class="breadcrumb")
+                li
+                    a(href="#") /
+                    span(class="divider") 
+                li
+                    a(href="#") parent folder
+                    span(class="divider") /
+                li(class="active") current folder
+             table(class="table table-bordered")
+                thead
+                    tr
+                      th
+                        input(type="checkbox",id="chkleftfileselectall")
+                      th 
+                        span(class="pointer", ng-click="orderProp=''; reverse=!reverse") Filename
+                      th 
+                        span(class="pointer", ng-click="orderProp='size'; reverse=!reverse") Size
+                      th 
+                        span(class="pointer", ng-click="orderProp='type'; reverse=!reverse") Type
+                      th 
+                        span(class="pointer", ng-click="orderProp='date'; reverse=!reverse") Last Modified
+                tbody
+                    tr
+                      td
+                      td(colspan="4")
+                        a(href="#back") ..
+                    tr(ng-repeat="file in cloudfiles | FirstFolderThenAlphabetic:'ascending' | orderBy:orderProp:reverse")
+                      td
+                        input(type="checkbox")
+                      td
+                        a(href="#", ng-click="changeWorkingDirectory(file)") {{file.name}}
+                      td {{file.size | sizefilter:file.type }}
+                      td {{file.type | fileorfolderfilter:file.name }}
+                      td {{file.date | formatdatefilter }}
+                 //-   
+                    tr
+                      td
+                        input(type="checkbox")
+                      td file1
+                      td 1234567890
+                      td Text Document
+                      td 31/11/2012 14:00:00 
+        div(class="span6")
+            select(id="ddlrightconnection",name="ddlrightconnection",class="span12")
+                option(value="1") FTP - example2.com
+                option(value="2") Dropbox
+            ul(class="breadcrumb")
+                li
+                    a(href="#") /
+                    span(class="divider") 
+                li
+                    a(href="#") parent folder
+                    span(class="divider") /
+                li(class="active") current folder
+             table(class="table table-bordered")
+                thead
+                    tr
+                      th
+                        input(type="checkbox",id="chkrightfileselectall")
+                      th Filename
+                      th Size
+                      th Type
+                      th Date Modified
+                tbody
+                    tr
+                      td
+                      td(colspan="4")
+                        a(href="#back") ..
+                    tr
+                      td
+                        input(type="checkbox")
+                      td
+                        a(href="#folder1") folder1
+                      td 
+                      td Folder
+                      td 31/11/2012 12:00
+                    tr
+                      td
+                        input(type="checkbox")
+                      td file1
+                      td 1234567890
+                      td Text Document
+                      td 31/11/2012 14:00:00 
+      div(class="row-fluid show-grid")         
+        div(class="span12")
+            table(class="table table-bordered")
+                thead
+                    tr
+                      th Cloud File
+                      th Direction
+                      th Remote File
+                      th Size
+                      th Status
+                 tbody
+                    tr
+                      td(colspan="5")
+
+
+block footerjs

@@ -1,0 +1,41 @@
+doctype 5
+html(lang="en",ng-app="cloud2ftpapp")
+  head
+    meta(charset="utf-8")
+    title= title
+    meta(name="viewport", content="width=device=width, initail-scale=1.0")
+    link(rel="stylesheet", href="/css/bootstrap.css")
+    link(rel="stylesheet", href="/css/bootstrap-responsive.css")
+    link(rel="stylesheet", href="/css/main.css")
+    block css
+    
+    block headjs
+  body(ng-controller="cloud2ftpctrl")
+    div(class="navbar navbar-inverse navbar-fixed-top")
+        div(class="navbar-inner")            
+            div(class="container")
+                a(class="brand",href="/") Project name
+                form(class="navbar-form pull-right")
+                    input(class="span2",type="text",placeholder="Email")
+                    input(class="span2",type="password",placeholder="Password")                     
+    div(class="container")
+        div(class="alert")
+            button(type="button",class="close",data-dismiss="alert") &times;
+            strong Message! 
+            |This is an alert message.
+        block content
+    hr
+    footer(class="footer")
+        div(class="container")
+            p &copy; 2013 project name
+    //-script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+    //-script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js")
+    script(src="/js/jquery.min.js")
+    script(src="/js/angular.min.js")
+    script(src="/js/bootstrap.min.js")
+    script(src="/js/util.js?v=1.0")
+    script(src="/js/main.js?v=1.0")
+    script(src='/socket.io/socket.io.js')
+    script(src="/js/controllers.js?v=1.0")
+    script(src="/js/filters.js?v=1.0")
+    block footerjs
