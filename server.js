@@ -61,9 +61,9 @@ io.sockets.on('get:filesandfolders', function (data) {
     });
     // connect to localhost:21 as anonymous
     var o = new Object();
-    o.host = "chennaivantravels.com";
-    o.user = "chenniqo";
-    o.password = "BIG@hosting";
+    o.host = "example.com";
+    o.user = "ftpuser";
+    o.password = "ftppwd";
 
     c.connect(o);
 
