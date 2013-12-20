@@ -15,14 +15,15 @@ html(lang="en",ng-app="cloud2ftpapp")
         div(class="navbar-inner")            
             div(class="container")
                 a(class="brand",href="/") Project name
-                form(class="navbar-form pull-right")
+                a(href="/auth/dropbox") Login
+                //-form(class="navbar-form pull-right")
                     input(class="span2",type="text",placeholder="Email")
                     input(class="span2",type="password",placeholder="Password")                     
     div(class="container")
-        div(class="alert")
+        div(class="alert",ng-show="message")
             button(type="button",class="close",data-dismiss="alert") &times;
             strong Message! 
-            |This is an alert message.
+            |{{message}}
         block content
     hr
     footer(class="footer")

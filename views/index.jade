@@ -43,13 +43,15 @@ block content
                 option(value="1") FTP - example.com
                 option(value="2") Dropbox
             ul(class="breadcrumb")
-                li
+                li(ng-repeat="c in cloudfolder")
+                    span {{c}}
+                //-li
                     a(href="#") /
                     span(class="divider") 
-                li
+                //-li
                     a(href="#") parent folder
                     span(class="divider") /
-                li(class="active") current folder
+                //-li(class="active") current folder
              table(class="table table-bordered")
                 thead
                     tr
@@ -67,12 +69,12 @@ block content
                     tr
                       td
                       td(colspan="4")
-                        a(href="#back") ..
+                        a(ng-click="onefolderup()") ..
                     tr(ng-repeat="file in cloudfiles | FirstFolderThenAlphabetic:'ascending' | orderBy:orderProp:reverse")
                       td
-                        input(type="checkbox")
+                        input(type="checkbox",ng-if="file.type != 'd' ? true : false",ng-click="addtoqueue(file)")
                       td
-                        a(href="#", ng-click="changeWorkingDirectory(file)") {{file.name}}
+                        a(ng-click="changeWorkingDirectory(file)") {{file.name}}
                       td {{file.size | sizefilter:file.type }}
                       td {{file.type | fileorfolderfilter:file.name }}
                       td {{file.date | formatdatefilter }}
@@ -136,8 +138,12 @@ block content
                       th Size
                       th Status
                  tbody
-                    tr
-                      td(colspan="5")
+                    tr(ng-repeat="file in queuedfiles")
+                      td {{file.name}}
+                      td {{file.name}}
+                      td {{file.name}}
+                      td {{file.name}}
+                      td {{file.name}}
 
 
 block footerjs

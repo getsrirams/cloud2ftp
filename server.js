@@ -20,6 +20,8 @@ app.configure(function () {
     app.use(express.favicon());
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
+    app.use(express.cookieParser());
+app.use(express.session({secret: '1234567890QWERTY'}));
     app.use(express.methodOverride());
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
@@ -50,6 +52,7 @@ io.configure(function () {
     io.set("polling duration", 100);
 });
 // send the new user their name and a list of users
+io.sockets.on('connection', function (socket) {
 io.sockets.on('get:filesandfolders', function (data) {
     c.on('ready', function () {
         c.list("/justsalwars-site", function (err, list) {
@@ -61,13 +64,15 @@ io.sockets.on('get:filesandfolders', function (data) {
     });
     // connect to localhost:21 as anonymous
     var o = new Object();
-    o.host = "example.com";
-    o.user = "ftpuser";
-    o.password = "ftppwd";
+    o.host = "chennaivantravels.com";
+    o.user = "chenniqo";
+    o.password = "BIG@hosting";
 
     c.connect(o);
 
 });
+});
+
 
 
 server.listen(app.get('port'), function () {

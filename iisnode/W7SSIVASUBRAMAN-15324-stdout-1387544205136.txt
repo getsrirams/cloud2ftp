@@ -1,0 +1,14 @@
+info: socket.io started
+Express server listening on port \\.\pipe\c3efe24b-6386-45bd-a72e-5f855608b44f
+debug: client authorized
+info: handshake authorized VsXwQS3KR2xRkWRrFFh2
+debug: setting request GET /socket.io/1/xhr-polling/VsXwQS3KR2xRkWRrFFh2?t=1387544206045
+debug: setting poll timeout
+debug: client authorized for 
+debug: clearing poll timeout
+debug: xhr-polling writing 1::
+debug: set close timeout for client VsXwQS3KR2xRkWRrFFh2
+debug: setting request GET /socket.io/1/xhr-polling/VsXwQS3KR2xRkWRrFFh2?t=1387544206060
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client VsXwQS3KR2xRkWRrFFh2

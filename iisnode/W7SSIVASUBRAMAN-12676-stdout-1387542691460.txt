@@ -1,0 +1,47 @@
+info: socket.io started
+Express server listening on port \\.\pipe\6b4ae3d7-412a-45d5-93f1-d8e3d3e155e5
+debug: client authorized
+info: handshake authorized GeVEfIV4ksw2CCGW_T-y
+debug: setting request GET /socket.io/1/xhr-polling/GeVEfIV4ksw2CCGW_T-y?t=1387542692147
+debug: setting poll timeout
+debug: client authorized for 
+debug: clearing poll timeout
+debug: xhr-polling writing 1::
+debug: set close timeout for client GeVEfIV4ksw2CCGW_T-y
+[90mGET / [31m500 [90m112ms[0m
+debug: setting request GET /socket.io/1/xhr-polling/GeVEfIV4ksw2CCGW_T-y?t=1387542692256
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client GeVEfIV4ksw2CCGW_T-y
+debug: client authorized
+info: handshake authorized M_a5O_Wn6U42t4-t_T-z
+debug: setting request GET /socket.io/1/xhr-polling/M_a5O_Wn6U42t4-t_T-z?t=1387542694102
+debug: setting poll timeout
+debug: client authorized for 
+debug: clearing poll timeout
+debug: xhr-polling writing 1::
+debug: set close timeout for client M_a5O_Wn6U42t4-t_T-z
+debug: setting request GET /socket.io/1/xhr-polling/M_a5O_Wn6U42t4-t_T-z?t=1387542694117
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client M_a5O_Wn6U42t4-t_T-z
+debug: client authorized
+info: handshake authorized _cwc7tsCQ4Uw2ID9_T-0
+debug: setting request GET /socket.io/1/xhr-polling/_cwc7tsCQ4Uw2ID9_T-0?t=1387542757098
+debug: setting poll timeout
+debug: client authorized for 
+debug: clearing poll timeout
+debug: xhr-polling writing 1::
+debug: set close timeout for client _cwc7tsCQ4Uw2ID9_T-0
+debug: setting request GET /socket.io/1/xhr-polling/_cwc7tsCQ4Uw2ID9_T-0?t=1387542757114
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client _cwc7tsCQ4Uw2ID9_T-0
+debug: clearing poll timeout
+debug: xhr-polling writing 8::
+debug: set close timeout for client GeVEfIV4ksw2CCGW_T-y
+debug: xhr-polling closed due to exceeded duration
+debug: clearing poll timeout
+debug: xhr-polling writing 8::
+debug: set close timeout for client M_a5O_Wn6U42t4-t_T-z
+debug: xhr-polling closed due to exceeded duration
