@@ -8,18 +8,18 @@ block content
             ul(class="nav")
                 li
                   div(class="btn-group")
-                    button(class="btn") 
+                    a(href="#frmnewconnection",role="button",class="btn",data-toggle="modal") 
                         i(class="icon-file") 
                         span(class="hidden-phone") New Connection
-                    button(class="btn dropdown-toggle",data-toggle="dropdown")
+                    //-button(class="btn dropdown-toggle",data-toggle="dropdown")
                         span(class="caret")
-                    ul(class="dropdown-menu")
+                    //-ul(class="dropdown-menu")
                           li
                             a(href="#") FTP - example.com
                           li
                             a(href="#") Dropbox
                 li
-                  button(class="btn",title="Upload")                    
+                  button(class="btn",title="Upload",ng-click="ftpupload()")                    
                     i(class="icon-upload")  
                     span(class="hidden-phone") Upload                  
                 li             
@@ -39,9 +39,8 @@ block content
      div(id="tip",style="display:none")  
      div(class="row-fluid show-grid")         
         div(class="span6")
-            select(id="ddlleftconnection",name="ddlleftconnection",class="span12")
-                option(value="1") FTP - example.com
-                option(value="2") Dropbox
+            select(id="ddlleftconnection",name="ddlleftconnection",class="span12",ng-model="item",ng-change="changecloudconn()")                
+                option(ng-repeat="f in ftplist",value="{{f._id}}") {{f.name}} - {{f.host}}
             ul(class="breadcrumb")
                 li(ng-repeat="c in cloudfolder")
                     span {{c}}
@@ -69,12 +68,12 @@ block content
                     tr
                       td
                       td(colspan="4")
-                        a(ng-click="onefolderup()") ..
+                        a(ng-click="onefolderup('cloud')") ..
                     tr(ng-repeat="file in cloudfiles | FirstFolderThenAlphabetic:'ascending' | orderBy:orderProp:reverse")
                       td
-                        input(type="checkbox",ng-if="file.type != 'd' ? true : false",ng-click="addtoqueue(file)")
+                        input(type="checkbox",ng-hide="file.type == 'd'",ng-click="addtoqueue(file)")
                       td
-                        a(ng-click="changeWorkingDirectory(file)") {{file.name}}
+                        a(ng-click="changeWorkingDirectory(file,'cloud')") {{file.name}}
                       td {{file.size | sizefilter:file.type }}
                       td {{file.type | fileorfolderfilter:file.name }}
                       td {{file.date | formatdatefilter }}
@@ -87,46 +86,44 @@ block content
                       td Text Document
                       td 31/11/2012 14:00:00 
         div(class="span6")
-            select(id="ddlrightconnection",name="ddlrightconnection",class="span12")
-                option(value="1") FTP - example2.com
-                option(value="2") Dropbox
+            select(id="ddlrightconnection",name="ddlrightconnection",class="span12",ng-model="item1",ng-change="changeremoteconn()")                
+                option(ng-repeat="f in ftplist",value="{{f._id}}") {{f.name}} - {{f.host}}
             ul(class="breadcrumb")
-                li
+                li(ng-repeat="c in remotefolder")
+                    span {{c}}
+                //-li
                     a(href="#") /
                     span(class="divider") 
-                li
+                //-li
                     a(href="#") parent folder
                     span(class="divider") /
-                li(class="active") current folder
+                //-li(class="active") current folder
              table(class="table table-bordered")
                 thead
                     tr
                       th
                         input(type="checkbox",id="chkrightfileselectall")
-                      th Filename
-                      th Size
-                      th Type
-                      th Date Modified
+                      th 
+                        span(class="pointer", ng-click="orderProp=''; reverse=!reverse") Filename
+                      th 
+                        span(class="pointer", ng-click="orderProp='size'; reverse=!reverse") Size
+                      th 
+                        span(class="pointer", ng-click="orderProp='type'; reverse=!reverse") Type
+                      th 
+                        span(class="pointer", ng-click="orderProp='date'; reverse=!reverse") Last Modified
                 tbody
                     tr
                       td
                       td(colspan="4")
-                        a(href="#back") ..
-                    tr
+                        a(ng-click="onefolderup('remote')") ..
+                    tr(ng-repeat="file in remotefiles | FirstFolderThenAlphabetic:'ascending' | orderBy:orderProp:reverse")
                       td
-                        input(type="checkbox")
+                        //-input(type="checkbox",ng-hide="file.type == 'd'",ng-click="addtoqueue(file)")
                       td
-                        a(href="#folder1") folder1
-                      td 
-                      td Folder
-                      td 31/11/2012 12:00
-                    tr
-                      td
-                        input(type="checkbox")
-                      td file1
-                      td 1234567890
-                      td Text Document
-                      td 31/11/2012 14:00:00 
+                        a(ng-click="changeWorkingDirectory(file,'remote')") {{file.name}}
+                      td {{file.size | sizefilter:file.type }}
+                      td {{file.type | fileorfolderfilter:file.name }}
+                      td {{file.date | formatdatefilter }}
       div(class="row-fluid show-grid")         
         div(class="span12")
             table(class="table table-bordered")
@@ -139,11 +136,12 @@ block content
                       th Status
                  tbody
                     tr(ng-repeat="file in queuedfiles")
-                      td {{file.name}}
-                      td {{file.name}}
-                      td {{file.name}}
-                      td {{file.name}}
-                      td {{file.name}}
+                      td {{file.path}}
+                      td --&gt;
+                      td {{file.remotepath}}
+                      td {{file.size}}
+                      td {{file.status}}
 
+    
 
 block footerjs

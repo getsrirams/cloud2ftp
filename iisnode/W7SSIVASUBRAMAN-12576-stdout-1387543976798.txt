@@ -1,5 +1,0 @@
-info: socket.io started
-Express server listening on port \\.\pipe\29ac388d-4cc8-4ba4-bbf4-3bb85fb9afc1
-[90mGET / [36m304 [90m360ms[0m
-debug: served static content /socket.io.js
-[90mGET /getfilesandfolder?path=/ [36m304 [90m2351ms[0m

@@ -3,7 +3,7 @@ html(lang="en",ng-app="cloud2ftpapp")
   head
     meta(charset="utf-8")
     title= title
-    meta(name="viewport", content="width=device=width, initail-scale=1.0")
+    meta(name="viewport", content="width=device-width, initail-scale=1.0")
     link(rel="stylesheet", href="/css/bootstrap.css")
     link(rel="stylesheet", href="/css/bootstrap-responsive.css")
     link(rel="stylesheet", href="/css/main.css")
@@ -15,7 +15,8 @@ html(lang="en",ng-app="cloud2ftpapp")
         div(class="navbar-inner")            
             div(class="container")
                 a(class="brand",href="/") Project name
-                a(href="/auth/dropbox") Login
+                a(href="#frmlogin",role="button",class="btn",data-toggle="modal") Login
+                a(href="#frmregister",role="button",class="btn",data-toggle="modal") Register
                 //-form(class="navbar-form pull-right")
                     input(class="span2",type="text",placeholder="Email")
                     input(class="span2",type="password",placeholder="Password")                     
@@ -29,6 +30,74 @@ html(lang="en",ng-app="cloud2ftpapp")
     footer(class="footer")
         div(class="container")
             p &copy; 2013 project name
+        div(id="frmregister",class="modal hide fade",tabindex="-1",role="dialog",aria-labelledby="registerLabel",aria-hidden="true")
+            div(class="modal-header")
+                button(type="button",class="close",data-dismiss="modal",aria-hidden="true") &times;
+                h3(id="registerLabel") Register           
+            div(class="modal-body")
+                  form(action='/postRegister', method='POST',id="register",name="register")
+                   
+                    #login.center
+                      label(for='email') Email:
+                      input(type='text', name='email', placeholder='email@email.com')
+                    #password.center
+                      label(for='password') Password:
+                      input(type='password', name='password', placeholder='password')
+                    #first-name.center
+                      label(for='name.first') First Name:
+                      input(type='text', name='name.first', placeholder='First Name')
+                    #last-name.center
+                      label(for='name.last') Last Name:
+                      input(type='text', name='name.last', placeholder='Last Name')
+            
+            div(class="modal-footer")
+                button(class="btn",data-dismiss="modal",aria-hidden="true") Close
+                button(class="btn btn-primary",ng-click="register1()") Register
+         div(id="frmnewconnection",class="modal hide fade",tabindex="-1",role="dialog",aria-labelledby="connectionLabel",aria-hidden="true")
+            div(class="modal-header")
+                button(type="button",class="close",data-dismiss="modal",aria-hidden="true") &times;
+                h3(id="connectionLabel") Add New FTP Connection           
+            div(class="modal-body")
+                  form(action='/newconnection', method='POST',id="newconnection",name="newconnection")
+                   
+                    #connection-name.center
+                      label(for='name') Connection Name:
+                      input(type='text', name='name', placeholder='My Blog')
+                    #host-name.center
+                      label(for='host') Host:
+                      input(type='text', name='host', placeholder='example.com')
+                    #host-port.center
+                      label(for='hostport') Port:
+                      input(type='text', name='hostport', placeholder='21')
+                    #connusername.center
+                      label(for='ftpusername') Username:
+                      input(type='text', name='ftpusername', placeholder='username')
+                    #connpassword.center
+                      label(for='ftppassword') Password:
+                      input(type='password', name='ftppassword', placeholder='password')
+                    
+            
+            div(class="modal-footer")
+                button(class="btn",data-dismiss="modal",aria-hidden="true") Close
+                button(class="btn btn-primary",ng-click="addconnection()") Add Connection
+         div(id="frmlogin",class="modal hide fade",tabindex="-1",role="dialog",aria-labelledby="loginLabel",aria-hidden="true")
+            div(class="modal-header")
+                button(type="button",class="close",data-dismiss="modal",aria-hidden="true") &times;
+                h3(id="loginLabel") Login           
+            div(class="modal-body")
+                  form(action='/login', method='POST',id="frmlogin1",name="login")
+                    #login1.center
+                      label(for='email') Email:
+                      input(type='text', name='email', placeholder='email@email.com')
+                    #password1.center
+                      label(for='password') Password:
+                      input(type='password', name='password', placeholder='password')
+                   
+            
+            div(class="modal-footer")
+                //-button(class="btn",data-dismiss="modal",aria-hidden="true") Close
+                button(class="btn btn-primary",ng-click="login1()") Login
+
     //-script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
     //-script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js")
     script(src="/js/jquery.min.js")
@@ -36,7 +105,7 @@ html(lang="en",ng-app="cloud2ftpapp")
     script(src="/js/bootstrap.min.js")
     script(src="/js/util.js?v=1.0")
     script(src="/js/main.js?v=1.0")
-    script(src='/socket.io/socket.io.js')
+    //-script(src='/socket.io/socket.io.js')
     script(src="/js/controllers.js?v=1.0")
     script(src="/js/filters.js?v=1.0")
     block footerjs
