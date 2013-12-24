@@ -80,7 +80,9 @@ function cloud2ftpctrl($scope,$http, $timeout) {
 
     //Process queue array when upload button is clicked
     $scope.ftpupload = function () {
+        //Download the file to temp directory in server
         $http.get('/downloadfile?cid=' + $('#ddlleftconnection').val() + '&path=' + $scope.queuedfiles[$scope.queue].path + '&filename=' + $scope.queuedfiles[$scope.queue].name).success(function (data) {
+            //Upload the file from temp directory to remote FTP server
             $http.get('/uploadfile?cid=' + $('#ddlrightconnection').val() + '&path=' + $scope.queuedfiles[$scope.queue].remotepath + '&filename=' + $scope.queuedfiles[$scope.queue].name).success(function (data) {
                 if($scope.queue < $scope.queuedfiles.length )
                     $scope.queue++;

@@ -8,6 +8,29 @@ var Client = require('ftp');
     var c = new Client();
     var downloadfolder = '<path to folder>';
     module.exports = {
+
+        //Get Connection details
+        getftpdetails: function(connid,db1){
+           var connections = db1.get('connections');
+                var o = {};
+                
+                connections.findById(req.query.cid, function (err, doc) {
+                    if (err) {
+                        // If it failed, return error
+                        throw err;
+                        res.send("There was a problem adding the information to the database.");
+                    }
+                    else {
+                       
+                        o.host = doc.host;
+                        o.user = doc.username;
+                        o.port = doc.port;
+                        o.password = doc.password;
+
+                    }  
+                    return o;
+        })
+        },
         index: function (req, res) {
             res.render('index.jade', { title: 'Express', user: req.user });
         },
@@ -43,14 +66,14 @@ var Client = require('ftp');
             return function (req, res) {
                 var connections = db1.get('connections');
 
-                // Submit to the DB
+                
                 connections.find({
                     'userid': req.cookies.userid
                 }, '-password', function (err, doc) {
                     if (err) {
                         // If it failed, return error
                         throw err;
-                        res.send("There was a problem adding the information to the database.");
+                        
                     }
                     else {                        
                         res.json(doc);
@@ -71,23 +94,11 @@ var Client = require('ftp');
                     });
                 });
                 
-                var connections = db1.get('connections');
-                var o = {};
-                connections.findById(req.query.cid, function (err, doc) {
-                    if (err) {
-                        // If it failed, return error
-                        throw err;                        
-                    }
-                    else {                        
-                        o.host = doc.host;
-                        o.user = doc.username;
-                        o.port = doc.port;
-                        o.password = doc.password;
-
-                    }
+                var o = getftpdetails(req.query.cid,db1);
+                
 
                     c.connect(o);
-                });
+               
             }
         },
 
@@ -102,26 +113,11 @@ var Client = require('ftp');
                         res.json({ "status": "success" });
                     });
                 });
-                var connections = db1.get('connections');
-                var o = {};
+               
+                var o = getftpdetails(req.query.cid,db1);
                 
-                connections.findById(req.query.cid, function (err, doc) {
-                    if (err) {
-                        // If it failed, return error
-                        throw err;
-                        res.send("There was a problem adding the information to the database.");
-                    }
-                    else {
-                       
-                        o.host = doc.host;
-                        o.user = doc.username;
-                        o.port = doc.port;
-                        o.password = doc.password;
-
-                    }
 
                     c.connect(o);
-                });
             }
         },
 
@@ -136,26 +132,10 @@ var Client = require('ftp');
                         res.json({ "status": "success" });
                     });
                 });
-                var connections = db1.get('connections');
-                var o = {};
+               var o = getftpdetails(req.query.cid,db1);
                 
-                connections.findById(req.query.cid, function (err, doc) {
-                    if (err) {
-                        // If it failed, return error
-                        throw err;
-                        res.send("There was a problem adding the information to the database.");
-                    }
-                    else {
-                        
-                        o.host = doc.host;
-                        o.user = doc.username;
-                        o.port = doc.port;
-                        o.password = doc.password;
-
-                    }
 
                     c.connect(o);
-                });
             } 
         },
 
