@@ -14,7 +14,7 @@ var Client = require('ftp');
            var connections = db1.get('connections');
                 var o = {};
                 
-                connections.findById(req.query.cid, function (err, doc) {
+                connections.findById(connid, function (err, doc) {
                     if (err) {
                         // If it failed, return error
                         throw err;
