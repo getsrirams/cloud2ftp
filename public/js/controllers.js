@@ -90,6 +90,14 @@ function cloud2ftpctrl($scope,$http, $timeout) {
         });
     }
 
+     //Create new folder in FTP
+    $scope.createfolder = function () {
+        var path = getWorkingDirectory('cloud');
+        $http.get('/createfolder?cid=' + $('#ddlleftconnection').val() + '&path=' + path + '&foldername=' + $scope.foldername).success(function (data) {
+            //Refresh the list
+            init();
+        });
+    }
     //Add new FTP connection
      $scope.addconnection = function(){
         var $newconnection = $('#newconnection');
@@ -181,7 +189,7 @@ function cloud2ftpctrl($scope,$http, $timeout) {
         });
     }
     $scope.login1 = function () {
-        alert('login');
+        //alert('login');
         var $login = $('#frmlogin1');
         $.ajax({
             type: 'POST',

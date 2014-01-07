@@ -138,7 +138,27 @@ var Client = require('ftp');
                     c.connect(o);
             } 
         },
+        //Create a new folder in FTP server
+        createfolder: function () {
+            return function (req, res) {
+                c.on('ready', function () {
+                    c.cwd(req.query.path, function (err,currentDir) {
+                        if(currentDir != null){
+                           c.mkdir(req.query.foldername, function (err) {
+                            if (err) throw err;
+                            c.end();
+                            res.json({ "status": "success" });
+                            });
+                        }
+                    });
+                    
+                });
+               var o = getftpdetails(req.query.cid,db1);
+                
 
+                    c.connect(o);
+            } 
+        },
 
         // app.post('/register'...)
         postRegister: function (db1) {
